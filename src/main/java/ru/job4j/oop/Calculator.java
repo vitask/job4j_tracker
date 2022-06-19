@@ -13,15 +13,15 @@ public class Calculator {
     }
 
     public static int minus(int y) {
-        return x - y;
+        return y - x;
     }
 
     public int divide(int y) {
-        return x / y;
+        return y / x;
     }
 
     public int sumAllOperation(int y) {
-        return sum(y) + multiply(y) + minus(y) + divide(y) + divide(y);
+        return sum(y) + multiply(y) + minus(y) + divide(y);
     }
 
     public static void main(String[] args) {
