@@ -20,7 +20,7 @@ public class Library {
         }
         System.out.println("Поиск книги с названием Clean Code");
         for (Book book : library) {
-            if (book.getName().equals("Clean Code")) {
+            if (("Clean Code").equals(book.getName())) {
                 System.out.println(book.getName() + ", " + book.getPage() + " pages");
             }
         }
