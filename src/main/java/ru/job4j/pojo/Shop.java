@@ -6,7 +6,8 @@ public class Shop {
         int result = -1;
         for (int i = 0; i < products.length; i++) {
             if (products[i] == null) {
-                return i;
+                result = i;
+                break;
             }
         }
         return result;
