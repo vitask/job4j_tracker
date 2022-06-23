@@ -46,7 +46,7 @@ public class Tracker {
 
     private int indexOf(int id) {
         int result = -1;
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < size; i++) {
             if (items[i].getId() == id) {
                 result = i;
                 break;
@@ -61,6 +61,17 @@ public class Tracker {
         if (result) {
             item.setId(id);
             items[index] = item;
+        }
+        return result;
+    }
+
+    public boolean delete(int id) {
+        int index = indexOf(id);
+        boolean result = index != -1;
+        if (result) {
+            System.arraycopy(items, index + 1, items, index, size - 1);
+            items[size - 1] = null;
+            size--;
         }
         return result;
     }
