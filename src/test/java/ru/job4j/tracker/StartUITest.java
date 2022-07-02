@@ -18,7 +18,7 @@ public class StartUITest {
                 new CreateActions(output),
                 new ExitActions(output)
         };
-        new StartUI().init(in, tracker, actions);
+        new StartUI(output).init(in, tracker, actions);
         assertThat(tracker.findAll()[0].getName(), is("Test"));
     }
 
@@ -34,7 +34,7 @@ public class StartUITest {
                 new EditActions(output),
                 new ExitActions(output)
         };
-        new StartUI().init(in, tracker, actions);
+        new StartUI(output).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is(edit));
     }
 
@@ -49,7 +49,7 @@ public class StartUITest {
                 new DeleteActions(output),
                 new ExitActions(output)
         };
-        new StartUI().init(in, tracker, actions);
+        new StartUI(output).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
 }
