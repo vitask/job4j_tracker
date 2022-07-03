@@ -112,7 +112,7 @@ public class StartUITest {
         Item item = tracker.add(new Item("Test"));
         Input in = new StubInput(
                 new String[]{"0", item.getName(), "1"});
-        UserAction[] actions = new UserAction[] {
+        UserAction[] actions = new UserAction[]{
                 new FindByNameActions(output),
                 new ExitActions(output)
         };
@@ -127,6 +127,28 @@ public class StartUITest {
                         + "Menu:" + ln
                         + "0. Find item by name" + ln
                         + "1. Exit Program" + ln
+                        + "Program closed." + ln
+        ));
+    }
+
+    @Test
+    public void whenInvalidExit() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Input in = new StubInput(
+                new String[]{"1", "0"}
+        );
+        UserAction[] actions = new UserAction[]{
+                new ExitActions(out)
+        };
+        new StartUI(out).init(in, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString(), is(
+                "Menu:" + ln
+                        + "0. Exit Program" + ln
+                        + "Wrong input, you can select: 0 - 0" + ln
+                        + "Menu:" + ln
+                        + "0. Exit Program" + ln
                         + "Program closed." + ln
         ));
     }
