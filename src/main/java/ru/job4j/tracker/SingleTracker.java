@@ -6,6 +6,8 @@ public final class SingleTracker {
 
     private static SingleTracker trackerMethods = null;
 
+    private Tracker tracker = new Tracker();
+
     private SingleTracker() {
     }
 
@@ -15,8 +17,6 @@ public final class SingleTracker {
         }
         return trackerMethods;
     }
-
-    private Tracker tracker = new Tracker();
 
     public Item add(Item item) {
         return tracker.add(item);
