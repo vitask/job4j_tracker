@@ -19,7 +19,7 @@ public class StartUITest {
                 new ExitActions(output)
         };
         new StartUI(output).init(in, tracker, actions);
-        assertThat(tracker.findAll()[0].getName(), is("Test"));
+        assertThat(tracker.findAll().get(0).getName(), is("Test"));
     }
 
     @Test

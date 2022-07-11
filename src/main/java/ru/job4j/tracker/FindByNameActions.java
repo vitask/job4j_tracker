@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class FindByNameActions implements UserAction {
     private final Output out;
 
@@ -16,10 +19,10 @@ public class FindByNameActions implements UserAction {
     public boolean execute(Input input, Tracker tracker) {
         out.println("=== Find item by name ===");
         String name = input.askStr("Enter name: ");
-        Item[] item = tracker.findByName(name);
-        if (item.length > 0) {
-            for (Item items : item) {
-                out.println(items);
+        List<Item> items = tracker.findByName(name);
+        if (items.size() > 0) {
+            for (Item item : items) {
+                out.println(item);
             }
         } else {
             out.println("Item with " + name + " name is not found. Try again.");
