@@ -18,4 +18,14 @@ class OrderConvertTest {
         assertThat(convert.get("3dfe5c"))
                             .isEqualTo(new Order("3dfe5c", "Dress"));
     }
+
+    @Test
+    public void whenDuplicateOrder() {
+        List<Order> orders = new ArrayList<>();
+        orders.add(new Order("3dfe5c", "Dress"));
+        orders.add(new Order("3dfe5c", "Dress"));
+        HashMap<String, Order> convert = OrderConvert.process(orders);
+        assertThat(convert.get("3dfe5c"))
+                .isEqualTo(new Order("3dfe5c", "Dress"));
+    }
 }
