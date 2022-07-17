@@ -1,7 +1,6 @@
 package ru.job4j.collection;
 
 import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.*;
 
 class StringCompareTest {
@@ -9,7 +8,7 @@ class StringCompareTest {
     @Test
     public void whenStringsAreEqualThenZero () {
         StringCompare compare = new StringCompare();
-        int rst = compare.compare(
+        int rst = compare.compare (
                 "Ivanov",
                 "Ivanov"
         );
@@ -19,7 +18,7 @@ class StringCompareTest {
     @Test
     public void whenLeftLessThanRightResultShouldBeNegative () {
         StringCompare compare = new StringCompare();
-        int rst = compare.compare(
+        int rst = compare.compare (
                 "Ivanov",
                 "Ivanova"
         );
@@ -29,7 +28,7 @@ class StringCompareTest {
     @Test
     public void whenLeftGreaterThanRightResultShouldBePositive () {
         StringCompare compare = new StringCompare();
-        int rst = compare.compare(
+        int rst = compare.compare (
                 "Petrov",
                 "Ivanova"
         );
@@ -37,9 +36,9 @@ class StringCompareTest {
     }
 
     @Test
-    public void secondCharOfLeftGreaterThanRightShouldBePositive(){
+    public void secondCharOfLeftGreaterThanRightShouldBePositive() {
         StringCompare compare = new StringCompare();
-        int rst = compare.compare(
+        int rst = compare.compare (
                 "Petrov",
                 "Patrov"
         );
@@ -47,9 +46,9 @@ class StringCompareTest {
     }
 
     @Test
-    public void secondCharOfLeftLessThanRightShouldBeNegative(){
+    public void secondCharOfLeftLessThanRightShouldBeNegative() {
         StringCompare compare = new StringCompare();
-        int rst = compare.compare(
+        int rst = compare.compare (
                 "Patrova",
                 "Petrov"
         );
