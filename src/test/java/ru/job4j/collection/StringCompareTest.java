@@ -6,9 +6,9 @@ import static org.assertj.core.api.Assertions.*;
 class StringCompareTest {
 
     @Test
-    public void whenStringsAreEqualThenZero () {
+    public void whenStringsAreEqualThenZero() {
         StringCompare compare = new StringCompare();
-        int rst = compare.compare (
+        int rst = compare.compare(
                 "Ivanov",
                 "Ivanov"
         );
@@ -16,9 +16,9 @@ class StringCompareTest {
     }
 
     @Test
-    public void whenLeftLessThanRightResultShouldBeNegative () {
+    public void whenLeftLessThanRightResultShouldBeNegative() {
         StringCompare compare = new StringCompare();
-        int rst = compare.compare (
+        int rst = compare.compare(
                 "Ivanov",
                 "Ivanova"
         );
@@ -26,9 +26,9 @@ class StringCompareTest {
     }
 
     @Test
-    public void whenLeftGreaterThanRightResultShouldBePositive () {
+    public void whenLeftGreaterThanRightResultShouldBePositive() {
         StringCompare compare = new StringCompare();
-        int rst = compare.compare (
+        int rst = compare.compare(
                 "Petrov",
                 "Ivanova"
         );
@@ -38,7 +38,7 @@ class StringCompareTest {
     @Test
     public void secondCharOfLeftGreaterThanRightShouldBePositive() {
         StringCompare compare = new StringCompare();
-        int rst = compare.compare (
+        int rst = compare.compare(
                 "Petrov",
                 "Patrov"
         );
@@ -48,7 +48,7 @@ class StringCompareTest {
     @Test
     public void secondCharOfLeftLessThanRightShouldBeNegative() {
         StringCompare compare = new StringCompare();
-        int rst = compare.compare (
+        int rst = compare.compare(
                 "Patrova",
                 "Petrov"
         );
