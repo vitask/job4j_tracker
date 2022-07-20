@@ -55,7 +55,7 @@ class JobTest {
         Comparator<Job> jobComparator = new JobSortDescByName().thenComparing(new JobSortDescByPriority());
         int result = jobComparator.compare(
                 new Job("Oleg", 0),
-                new Job("Stepan", 1)
+                new Job("Oleg", 1)
         );
         assertThat(result).isGreaterThan(0);
     }
@@ -65,9 +65,9 @@ class JobTest {
         Comparator<Job> jobComparator = new JobSortAscByName().thenComparing(new JobSortDescByPriority());
         int result = jobComparator.compare(
                 new Job("Oleg", 0),
-                new Job("Stepan", 1)
+                new Job("Oleg", 1)
         );
-        assertThat(result).isLessThan(0);
+        assertThat(result).isGreaterThan(0);
     }
 
 }
