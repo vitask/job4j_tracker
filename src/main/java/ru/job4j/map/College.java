@@ -1,6 +1,8 @@
 package ru.job4j.map;
 
+
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 public class College {
@@ -10,37 +12,30 @@ public class College {
         this.students = students;
     }
 
-    public Student findByAccount(String account) {
-        return students.keySet()
-                .stream()
-                .filter(acc -> acc.getAccount().equals(account))
-                .findFirst()
-                .orElse(null);
-    }
-
-    public Subject findBySubjectName(String account, String name) {
-        Student s = findByAccount(account);
-        if (s != null) {
-            return students.get(s)
-                    .stream()
-                    .filter(subject -> subject.getName().equals(name))
-                    .findFirst()
-                    .orElse(null);
+    public Optional<Student> findByAccount(String account) {
+        Optional<Student> opt = Optional.empty();
+        for (Student student : students.keySet()) {
+            if (account.equals(student.getAccount())) {
+                opt = Optional.of(student);
+                break;
+            }
         }
-        return null;
+        return opt;
     }
 
-    public static void main(String[] args) {
-        Map<Student, Set<Subject>> students = Map.of(new Student("Student", "000001", "201-18-15"),
-                Set.of(
-                        new Subject("Math", 70),
-                        new Subject("English", 85)
-                )
-        );
-        College college = new College(students);
-        Student student = college.findByAccount("000001");
-        System.out.println("Найденный студент: " + student);
-        Subject subjectMath = college.findBySubjectName("000001", "Math");
-        System.out.println("Оценка по найденному предмету: " + subjectMath.getScore());
+    public Optional<Subject> findBySubjectName(String account, String name) {
+        Optional<Subject> opt = Optional.empty();
+        Optional<Student> s = findByAccount(account);
+        if (s.isPresent()) {
+            Set<Subject> subjects = students.get(s.get());
+            for (Subject subject : subjects) {
+                if (name.equals(subject.getName())) {
+                    opt = Optional.of(subject);
+                    break;
+                }
+            }
+        }
+        return opt;
+
     }
 }
