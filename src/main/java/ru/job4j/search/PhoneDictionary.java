@@ -17,7 +17,7 @@ public class PhoneDictionary {
         Predicate<Person> findAddress = (person) -> person.getAddress().contains(key);
         Predicate<Person> combine = findAddress.or(findPhone).or(findSurname).or(findName);
         ArrayList<Person> result = new ArrayList<>();
-        for (Person person : persons) {
+        for (var person : persons) {
             if (combine.test(person)) {
                 result.add(person);
             }

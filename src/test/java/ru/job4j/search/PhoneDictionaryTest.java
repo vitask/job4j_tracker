@@ -9,32 +9,32 @@ public class PhoneDictionaryTest {
 
     @Test
     public void whenFindByName() {
-        PhoneDictionary phone = new PhoneDictionary();
+        var phone = new PhoneDictionary();
         phone.add(
                 new Person("Petr", "Arsentev", "12345", "Bryansk")
         );
-        ArrayList<Person> find = phone.find("Petr");
+        var find = phone.find("Petr");
         assertThat(find.get(0).getSurname(), is("Arsentev"));
     }
 
     @Test
     public void whenFindByAddress() {
-        PhoneDictionary phone = new PhoneDictionary();
+        var phone = new PhoneDictionary();
         phone.add(
                 new Person("Petr", "Arsentev", "12345", "Bryansk")
         );
-        ArrayList<Person> find = phone.find("nsk");
+        var find = phone.find("nsk");
         assertThat(find.get(0).getName(), is("Petr"));
     }
 
     @Test
     public void whenNotFind() {
-        PhoneDictionary phone = new PhoneDictionary();
+        var phone = new PhoneDictionary();
         phone.add(
                 new Person("Petr", "Arsentev", "12345", "Bryansk")
         );
-        ArrayList<Person> find = phone.find("Oleg");
-        ArrayList<Person> expected = new ArrayList<>();
+        var find = phone.find("Oleg");
+        var expected = new ArrayList<>();
         assertThat(find, is(expected));
     }
 }
