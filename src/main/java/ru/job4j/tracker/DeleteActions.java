@@ -13,14 +13,12 @@ public class DeleteActions implements UserAction {
     }
 
     @Override
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store store) {
         out.println("=== Delete Item ===");
         int id = input.askInt("Enter id: ");
-        if (tracker.delete(id)) {
-            out.println("Successfully removed");
-        } else {
-            out.println("Removal error. Try again.");
-        }
+        Item item = store.findById(id);
+        store.delete(id);
+        out.println(item != null ? "Заявка удалена успешно." : "Ошибка удаления заявки.");
         return true;
     }
 }
