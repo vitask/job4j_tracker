@@ -41,15 +41,9 @@ public class SqlTracker implements Store {
     }
 
     private Item createItem(ResultSet resultSet) throws SQLException {
-        Item item = null;
-        while (resultSet.next()) {
-            item = new Item(
-                    resultSet.getInt("id"),
-                    resultSet.getString("name"),
-                    resultSet.getTimestamp("created").toLocalDateTime()
-            );
-        }
-        return item;
+        return new Item(resultSet.getInt("id"),
+                resultSet.getString("name"),
+                resultSet.getTimestamp("created").toLocalDateTime());
     }
 
     public void createTable() {
@@ -68,6 +62,11 @@ public class SqlTracker implements Store {
             statement.setString(1, item.getName());
             statement.setTimestamp(2, Timestamp.valueOf(item.getCreated()));
             statement.execute();
+            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    item.setId(generatedKeys.getInt(1));
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -101,8 +100,8 @@ public class SqlTracker implements Store {
     @Override
     public List<Item> findAll() {
         List<Item> list = new ArrayList<>();
-        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM items")) {
-            try (ResultSet resultSet = statement.getResultSet()) {
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM items ORDER BY id")) {
+            try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     list.add(createItem(resultSet));
                 }
