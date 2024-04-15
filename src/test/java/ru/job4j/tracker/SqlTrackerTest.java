@@ -88,4 +88,14 @@ public class SqlTrackerTest {
         Item item1 = tracker.add(new Item("item1"));
         assertThat(tracker.findByName("item1").get(0)).isEqualTo(item1);
     }
+
+    @Test
+    public void whenSaveTwoItemsAndDeleteAndCheckSaveTable() {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item1 = tracker.add(new Item("item1"));
+        Item item2 = tracker.add(new Item("item2"));
+        tracker.delete(item2.getId());
+        assertThat(tracker.findByName("item1").get(0)).isEqualTo(item1);
+        assertThat(tracker.findAll()).size().isEqualTo(1);
+    }
 }
