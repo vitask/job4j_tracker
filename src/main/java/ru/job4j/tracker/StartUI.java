@@ -37,10 +37,10 @@ public class StartUI {
         Input input = new ValidateInput(output, new ConsoleInput());
         try (Store store = new SqlTracker()) {
             List<UserAction> actions = Arrays.asList(
-                    new CreateActions(output),
+                    new CreateManyItems(output),
                     new FindAllActions(output),
                     new EditActions(output),
-                    new DeleteActions(output),
+                    new DeleteAllItems(output),
                     new FindByIdActions(output),
                     new FindByNameActions(output),
                     new ExitActions(output)
